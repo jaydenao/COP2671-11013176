@@ -333,6 +333,8 @@ MonoBehaviour:
   - {fileID: 2637988147964664203, guid: 21ec71029c2d7b54ba3ef5ff44e3febe, type: 3}
   - {fileID: 1118139505582414787, guid: 9a0b8353cae6bd64b809a6dd275856f2, type: 3}
   - {fileID: 2761015600253314231, guid: c2b802f8dea4a2848866943e35de3b5c, type: 3}
+  spawnRangeX: 9.5
+  spawnPosZ: 30
 --- !u!4 &465539866
 Transform:
   m_ObjectHideFlags: 0
@@ -491,7 +493,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
+  orthographic: 1
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -517,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 36.72, z: 3.91}
+  m_LocalPosition: {x: -0.12, y: 42.11, z: 3.03}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
