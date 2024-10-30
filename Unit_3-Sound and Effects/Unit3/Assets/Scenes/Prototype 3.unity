@@ -493,7 +493,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 834bc99524a174a378e982623582c06d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.616
+  m_Volume: 0.221
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -929,12 +929,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa44eaf16b1ea248aca792e5e48a487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smokeParticles: {fileID: 443949584}
+  dirtParticles: {fileID: 1310015595}
+  jumpSound: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
+  crashSound: {fileID: 8300000, guid: 913d6445ee8cc4152a9c18da590ee203, type: 3}
   jumpForce: 8.5
   gravityModifier: 1.52
   isOnGround: 1
   gameOver: 0
-  smokeParticles: {fileID: 443949584}
-  dirtParticles: {fileID: 1310015595}
 --- !u!4 &1083517094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
