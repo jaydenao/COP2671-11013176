@@ -57,6 +57,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(7);
         Debug.Log("Disabling Powerup");
         hasPowerup = false;
-        powerupIndicator.active = false;
+        powerupIndicator.SetActive(false);
     }
 }
