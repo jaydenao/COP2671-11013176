@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private float upperBound = 175;
     private float lowerBound = -230;
     private GameManager gameManager;
+    private Rigidbody rb;
 
     Vector3 moveDirection = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        rb.AddForce(-Vector3.forward * horizontalInput * Time.deltaTime * 10000 ,ForceMode.Acceleration);
         
         if ( transform.position.z  < lowerBound)
         {

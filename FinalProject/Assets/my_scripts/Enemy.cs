@@ -32,9 +32,16 @@ public class Enemy : MonoBehaviour
      private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && gameManager.isGameActive)
         {
+            PlayerCombat playerCombat = collision.gameObject.GetComponent<PlayerCombat>();
             Instantiate(crashEffect, transform.position, Quaternion.identity);
+            if (playerCombat.hasPowerup)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
             Destroy(collision.gameObject);
             gameManager.GameOver(false);
             

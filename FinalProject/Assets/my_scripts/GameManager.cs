@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public GameObject enemySpawner;
     public GameObject enemyPrefab;
+
+    public GameObject powerup;
+    public GameObject powerupSpawner;
+
     public float spawnRate = 2.0f;
+    public float powerupSpawnRate = 5.0f;
     
     private float upperBound = 175;
     private float lowerBound = -230;
@@ -49,8 +54,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 isGameActive = true;
-                StartCoroutine(SpawnEnemy());
-                StartCoroutine(ElapseTime());
+               StartAllCoroutines();
             }
         }
     }
@@ -61,8 +65,8 @@ public class GameManager : MonoBehaviour
         GameObject.Find("StartMenu").SetActive(false);
         gameScreen.SetActive(true);
         spawnRate /= difficulty;
-        StartCoroutine(SpawnEnemy());
-        StartCoroutine(ElapseTime());
+        scoreText.text = "Score: 0";
+        StartAllCoroutines();
     }
 
     public void GameOver(bool didWin)
@@ -89,6 +93,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnPowerup()
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(powerupSpawnRate);
+            Vector3 spawnLocation = new Vector3(powerupSpawner.transform.position.x, 0, Random.Range(lowerBound + 10, upperBound - 10));
+            Instantiate(powerup, spawnLocation, powerup.transform.rotation);
+
+        }
+    }
+
     public void UpdateScore()
     {
         score++;
@@ -107,5 +122,12 @@ public class GameManager : MonoBehaviour
                 GameOver(true);
             }
         }
+    }
+
+    public void StartAllCoroutines()
+    {
+        StartCoroutine(SpawnEnemy());
+        StartCoroutine(ElapseTime());
+        StartCoroutine(SpawnPowerup());
     }
 }
