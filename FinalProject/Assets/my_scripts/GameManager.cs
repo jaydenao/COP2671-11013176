@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -46,16 +47,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            pauseScreen.SetActive(!pauseScreen.activeInHierarchy);
-            if (pauseScreen.activeInHierarchy)
-            {
-                isGameActive = false;
-            }
-            else
-            {
-                isGameActive = true;
-               StartAllCoroutines();
-            }
+           PauseGame();
         }
     }
 
@@ -69,17 +61,36 @@ public class GameManager : MonoBehaviour
         StartAllCoroutines();
     }
 
+    public void PauseGame()
+    {
+        pauseScreen.SetActive(!pauseScreen.activeInHierarchy);
+        if (pauseScreen.activeInHierarchy)
+        {
+            isGameActive = false;
+        }
+        else
+        {
+            isGameActive = true;
+            StartAllCoroutines();
+        }
+    }
+
     public void GameOver(bool didWin)
     {
         isGameActive = false;
         if (didWin)
         {
-
+            winScreen.SetActive(true);
         }
         else
         {
-
+            loseScreen.SetActive(true);
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator SpawnEnemy()

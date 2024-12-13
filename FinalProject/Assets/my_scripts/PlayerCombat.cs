@@ -8,6 +8,10 @@ public class PlayerCombat : MonoBehaviour
     public GameObject shotPoint;
     public GameObject[] trifecta;
     public GameObject powerupIndicator;
+
+    public AudioClip laserShotSound;
+    public AudioClip trifectaShotSound;
+    private AudioSource audioSource;
     public bool hasPowerup = false;
     
 
@@ -16,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
           gameManager = GameObject.FindAnyObjectByType<GameManager>();
+          audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 GameObject.Instantiate(laser, shotPoint.transform.position, Quaternion.identity);
             }
+            audioSource.Play();
             
         }
     }
@@ -46,6 +52,7 @@ public class PlayerCombat : MonoBehaviour
     {
         hasPowerup = true;
         powerupIndicator.SetActive(true);
+        audioSource.clip = trifectaShotSound;
         StartCoroutine(EnablePowerup(duration));
    
     }
@@ -54,5 +61,6 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(duration);
         hasPowerup = false;
         powerupIndicator.SetActive(false);
+        audioSource.clip = laserShotSound;
     }
 }
