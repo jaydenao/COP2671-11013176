@@ -6,12 +6,14 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     private Rigidbody rb;
+    private AudioSource audioSource;
     private GameManager gameManager;
     public float speed;
     public ParticleSystem hitEffect;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
         StartCoroutine(SelfDestruct());
@@ -28,6 +30,7 @@ public class Laser : MonoBehaviour
         Debug.Log("Laser hit");
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            audioSource.Play();
             Instantiate(hitEffect, collision.gameObject.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
             gameManager.UpdateScore();

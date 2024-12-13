@@ -11,9 +11,11 @@ public class Enemy : MonoBehaviour
     private float speed;
     private GameManager gameManager;
     private Rigidbody rb;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>(); 
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
         speed = Random.Range(75, maxSpeed);
@@ -41,7 +43,7 @@ public class Enemy : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-            
+            audioSource.Play();
             Destroy(collision.gameObject);
             gameManager.GameOver(false);
             
